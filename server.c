@@ -30,12 +30,10 @@ int main (void)
 
 	listen (sock_descrip, 5);
 
-<<<<<<< HEAD
-=======
 	printf ("Waiting for connections: \n");
 	c=sizeof(struct sockaddr_in);
 
-	sock_new=accept(sock_descrip,(struct sockaddr *)&client, (socklen_t *)c);
+	sock_new=accept(sock_descrip,(struct sockaddr *)&client, (socklen_t *)&c);
 	if (sock_new < 0)
 	{
 		printf ("Connection not accepted.\n");
@@ -44,6 +42,5 @@ int main (void)
 
 	printf ("Connection accepted.\n");
 	
->>>>>>> c4945e63b4905005f381170219e7a4eb504821e5
 return 0;
 }
