@@ -6,8 +6,8 @@
 
 int main (void)
 {
-	int sock_descrip;
-	struct sockaddr_in cse01_server;
+	int sock_descrip, sock_new, c;
+	struct sockaddr_in cse01_server, client;
 
 	sock_descrip=socket(AF_INET,SOCK_STREAM,0);
 	if (sock_descrip==-1)
@@ -30,5 +30,20 @@ int main (void)
 
 	listen (sock_descrip, 5);
 
+<<<<<<< HEAD
+=======
+	printf ("Waiting for connections: \n");
+	c=sizeof(struct sockaddr_in);
+
+	sock_new=accept(sock_descrip,(struct sockaddr *)&client, (socklen_t *)c);
+	if (sock_new < 0)
+	{
+		printf ("Connection not accepted.\n");
+		return 1;
+	}
+
+	printf ("Connection accepted.\n");
+	
+>>>>>>> c4945e63b4905005f381170219e7a4eb504821e5
 return 0;
 }

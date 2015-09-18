@@ -21,9 +21,9 @@ int main (void)
 
 	printf ("SUCCESS\n");
 
-	cse01_server.sin_addr.s_addr = inet_addr("192.168.1.255");
+	cse01_server.sin_addr.s_addr = inet_addr("129.120.151.255");
 	cse01_server.sin_family = AF_INET;
-	cse01_server.sin_port = htons(38);
+	cse01_server.sin_port = htons(8888);
 
 	if (test=connect(sock_descrip, (struct sockaddr *)&cse01_server, sizeof(cse01_server)) < 0)
 	{
