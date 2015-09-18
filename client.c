@@ -21,7 +21,7 @@ int main (void)
 
 	printf ("SUCCESS\n");
 
-	cse01_server.sin_addr.s_addr = inet_addr("129.120.151.94");
+	cse01_server.sin_addr.s_addr = inet_addr("129.120.151.255");
 	cse01_server.sin_family = AF_INET;
 	cse01_server.sin_port = htons(8888);
 
