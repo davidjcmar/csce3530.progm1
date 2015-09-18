@@ -22,11 +22,13 @@ int main (void)
 
 	if (bind(sock_descrip,(struct sockaddr *)&cse01_server, sizeof(cse01_server)) < 0)
 	{
-		printerr ("Bind failed\n");
+		printf ("Bind failed\n");
 		return 1;
 	}
 
 	printf ("Bind complete\n");
+
+	listen (sock_descrip, 5);
 
 return 0;
 }
