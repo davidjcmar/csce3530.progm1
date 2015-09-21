@@ -36,6 +36,7 @@ int main (void)
 	sock_new=accept(sock_descrip,(struct sockaddr *)&client, (socklen_t *)&c);
 	if (sock_new < 0)
 	{
+		printf ("%d\n",sock_new);
 		printf ("Connection not accepted.\n");
 		return 1;
 	}
