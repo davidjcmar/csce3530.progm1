@@ -33,8 +33,7 @@ int main (void)
 	printf ("Waiting for connections: \n");
 	c=sizeof(struct sockaddr_in);
 
-	sock_new=accept(sock_descrip,(struct sockaddr *)&client, (socklen_t *)&c);
-	if (sock_new < 0)
+	if ((sock_new=accept(sock_descrip,(struct sockaddr *)&client, (socklen_t *)&c)) < 0)
 	{
 		printf ("%d\n",sock_new);
 		printf ("Connection not accepted.\n");
