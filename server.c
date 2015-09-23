@@ -3,12 +3,12 @@
 #include <netinet/in.h>
 #include <stdio.h>
 #include <string.h>
-#include <curl/curl.h>
 
 int main (void)
 {
-	int sock_descrip, sock_new, c;
-	struct sockaddr_in cse01_server, client;
+	int sock_descrip, sock_cse02, sock_inet, c;
+	struct sockaddr_in cse01_server,cse01_client, cse02_client;
+	char* message, cse02_resp[2048];
 
 	sock_descrip=socket(AF_INET,SOCK_STREAM,0);
 	if (sock_descrip==-1)
@@ -34,14 +34,26 @@ int main (void)
 	printf ("Waiting for connections: \n");
 	c=sizeof(struct sockaddr_in);
 
-	if ((sock_new=accept(sock_descrip,(struct sockaddr *)&client, (socklen_t *)&c)) < 0)
+	if ((sock_cse02=accept(sock_descrip,(struct sockaddr *)&cse02_client, (socklen_t *)&c)) < 0)
 	{
-		printf ("%d\n",sock_new);
 		printf ("Connection not accepted.\n");
 		return 1;
 	}
 
 	printf ("Connection accepted.\n");
+	message="Enter a URL for an HTTP request.\n";
+	if (send(sock_descrip, message, strlen(message), 0) < 0)
+	{
+		printf ("Outbound message failed.\n");
+		return 1;
+	}
+
+	if (recv(sock_descrip, cse02_resp, 2048, 0) < 0)
+	{
+		printf ("Client response failed.\n");
+		return 1;
+	}
+	printf ("%s\n", cse02_resp);
 	
 return 0;
 }
