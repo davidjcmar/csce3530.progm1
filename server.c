@@ -5,27 +5,27 @@
 #include <netinet/in.h>
 #define MESLEN 2048
 #define PORTNUM 56565
+
 /* parse url from client for GET request */
 void parse_client (char* message, char* url, char* host)
 {
 	printf ("message length: %d\n",strlen(message));
 	int i,j;
-/*	memset(host,'\0',256);
+	memset(host,'\0',256);
 	memset(url,'\0',MESLEN-256);
-	if (message[strlen(message)])
-	for (i=0;message[i]!='\0'||message[i]=='/';i++)
+	if (message[strlen(message)-1]!='/')
+		message[strlen(message)-1]='/';
+
+	for (i=0;message[i]=='/';i++)
 	{
 		host[i]=message[i];
 	}
-	for(j=0;message[i]!='\n';i++,j++)
+	for(j=0;message[i]!='\0';i++,j++)
 	{
 		url[j]=message[i];
 	}
-	if (strlen(url)==0)
-	{
-		url[0]='/';
-	}*/
 }
+
 int main (void)
 {
 	int sock_descript, sock_cli_ser, size;
