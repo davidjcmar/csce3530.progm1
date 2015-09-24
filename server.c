@@ -190,7 +190,7 @@ int main (void)
 	size=recv (sock_inet, buffer, MESLEN, 0);
 	printf ("size: %d\n",size);
 	printf ("%s", buffer);*/
-
+	write (sock_cli_ser, buffer, strlen(buffer));
 	close (sock_inet);
 	close (sock_descript);
 	close (sock_cli_ser);
