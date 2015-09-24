@@ -129,7 +129,7 @@ int main (void)
 	printf ("%s", message);
 //	write (sock_inet, message, strlen(message));
 //	read (sock_inetg, message, MESLEN);
-	printf ("new_message::: %s", message);
+	
 	shutdown (sock_inet,2);
 	shutdown (sock_descript,2);
 	shutdown (sock_cli_ser,2);
