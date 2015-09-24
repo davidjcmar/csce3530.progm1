@@ -7,7 +7,7 @@
 #include <arpa/inet.h>
 #define MESLEN 2048
 #define PORTNUM 56565
-
+//
 /* parse url from client for GET request */
 void parse_client (char* message, char* url, char* host)
 {
