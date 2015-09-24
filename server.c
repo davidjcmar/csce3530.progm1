@@ -130,14 +130,14 @@ int main (void)
 //	write (sock_inet, message, strlen(message));
 //	read (sock_inetg, message, MESLEN);
 //	getaddrinfo () // use struct addrinfo to id host
-//	if (connect (sock_inet, (struct sockaddr*)&proxy, (socklen_t*) &sizeof(proxy)) < 0)
+	if (connect (sock_inet, (struct sockaddr*)&proxy, (socklen_t*) &sizeof(proxy)) < 0)
 	{
 		printf ("Error connecting to web server.\n");
 		return 1;
 	}
 	if (write(sock_inet, message, strlen(message))==0)
 		return 0;
-	
+
 	printf ("boom");
 	shutdown (sock_inet,2);
 	shutdown (sock_descript,2);
