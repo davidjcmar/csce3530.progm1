@@ -43,7 +43,7 @@ int main (void)
 	printf ("Connection accepted.\n");
 	message="Enter a URL for an HTTP request.\n\0";
 
-	if (send(sock_descrip, message, strlen(message), 0) < 0)
+	if (send(sock_cse02, message, strlen(message)) == -1)
 	{
 		printf ("Outbound message failed.\n");
 		return 1;
