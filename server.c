@@ -48,12 +48,12 @@ int main (void)
 		printf ("Connection accepted.\n");
 
 		/* hello client */
-		memset(message,0,MESLEN);
-		message[0]='\0';
+		memset(message,'\0',MESLEN);
 		strcpy (message,"Enter a URL for which you want a HTTP request: ");
 		write (sock_cli_ser, message, strlen(message));
+		memset(message,'\0',MESLEN);
 		read (sock_cli_ser, message, MESLEN);
 		printf ("%s\n", message);
-		
+
 	return 0;
 }
