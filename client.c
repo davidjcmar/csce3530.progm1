@@ -35,7 +35,7 @@ int main (void)
 	/* receive hello */
 	if (read(sock_descrip, message, 2000) == -1)
 	{
-		printf ("Failed to receive hello from server.\n");
+		printf ("Failed to receive message from server.\n");
 		return 1;
 	}
 	printf ("%s\n", message);

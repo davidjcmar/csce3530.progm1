@@ -37,14 +37,14 @@ int main (void)
 
 	printf ("Ready for incoming connection.\n");
 	size=sizeof (struct sockaddr_in);
-	while (sock_cli_ser=accept(sock_descript, (struct sockaddr *)&client, (socklen_t *)&size))
+	if (sock_cli_ser=accept(sock_descript, (struct sockaddr *)&client, (socklen_t *)&size) >= 0)
 	{
 		printf ("Connection accepted.\n");
 
 		/* hello client */
 		memset(message,0,2048);
 		message[0]='\0';
-		strcpy (message,"Hello client.\n");
+		strcpy (message,"Enter a URL for which you want a HTTP request: ");
 //		message="Hello client.\n";
 		write (sock_cli_ser, message, strlen(message));
 	}
