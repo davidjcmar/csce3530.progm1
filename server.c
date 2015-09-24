@@ -20,6 +20,7 @@ void parse_client (char* message, char* url, char* host)
 	if (message[strlen(message)-2]!='/')
 	{
 		/* set last char to '/' temporarily */
+		printf ("boo\n");
 		message[strlen(message)-1]='/';
 		boolean=1; // set flag
 	}
