@@ -37,18 +37,14 @@ int main (void)
 
 	printf ("Ready for incoming connection.\n");
 	size=sizeof (struct sockaddr_in);
-	sock_cli_ser=accept(sock_descript, (struct sockaddr *)&client, (socklen_t *)&size);
-
-	if (sock_cli_ser<0)
+	while (sock_cli_ser=accept(sock_descript, (struct sockaddr *)&client, (socklen_t *)&size))
 	{
-		printf ("Connection failed.\n");
-		return 1;
-	}
-	printf ("Connection accepted.\n");
+		printf ("Connection accepted.\n");
 
-	/* hello client */
-	message="Hello client.\n";
-	write (sock_cli_ser, message, strlen(message));
+		/* hello client */
+		message="Hello client.\n";
+		write (sock_cli_ser, message, strlen(message));
+	}
 
 	return 0;
 }
