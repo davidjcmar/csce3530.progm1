@@ -44,5 +44,6 @@ int main (void)
 	fgets (message, MESLEN, stdin);
 	write (sock_descrip, message, strlen(message));
 
+	shutdown (sock_descrip,2);
 	return 0;
 }

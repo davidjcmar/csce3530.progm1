@@ -29,7 +29,7 @@ void parse_client (char* message, char* url, char* host)
 
 	for(j=0;message[i]!='\n';i++,j++)
 		url[j]=message[i];
-	
+
 	if (boolean==1)
 		url[strlen(url)-1]='/';
 	else
@@ -88,6 +88,7 @@ int main (void)
 	printf ("url: %s\thost: %s\n",url,host);
 	/* create socket to inet */
 
-
+	shutdown (sock_descript,2);
+	shutdown (sock_cli_ser,2);
 	return 0;
 }
