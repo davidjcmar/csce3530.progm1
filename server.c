@@ -113,7 +113,7 @@ int main (void)
 //	printf ("url: %s\thost: %s\n",url,host);
 	printf ("1");
 	/* find ip addess based on host */
-	if ((he = gethostbyname(host))==NULL)
+/*	if ((he = gethostbyname(host))==NULL)
 	{
 		printf ("Get host by name failed");
 		return 1;
