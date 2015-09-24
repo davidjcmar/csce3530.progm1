@@ -107,7 +107,6 @@ int main (void)
 //	printf ("url: %s\thost: %s\n",url,host);
 	
 
-	printf ("HELLO?\n");
 	/* create socket to inet */
 	sock_inet=socket(AF_INET,SOCK_STREAM,0);
 	if (sock_inet==-1)
@@ -125,10 +124,11 @@ int main (void)
 		printf ("Bind failed.\n");
 		return 1;
 	}
-	printf ("wiener\n");
+
 	request(message,url,host);
-	printf ("new message:\n%sloloolol",message);
-	//write (proxy, message, strlen(message));
+	write (sock_inet, message, strlen(message));
+	read (sock_inet, message, MESLEN);
+	printf ("new_message::: %s", message);
 	shutdown (sock_inet,2);
 	shutdown (sock_descript,2);
 	shutdown (sock_cli_ser,2);
