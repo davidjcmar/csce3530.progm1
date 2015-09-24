@@ -130,7 +130,7 @@ int main (void)
 //	write (sock_inet, message, strlen(message));
 //	read (sock_inetg, message, MESLEN);
 //	getaddrinfo () // use struct addrinfo to id host
-	if (connect (sock_inet, (struct sockaddr*)&proxy, (socklen_t*) sizeof(proxy)) < 0)
+	if (connect (sock_inet, (struct sockaddr*)&proxy, sizeof(proxy)) < 0)
 	{
 		printf ("Error connecting to web server.\n");
 		return 1;
