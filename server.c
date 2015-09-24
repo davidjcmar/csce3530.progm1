@@ -11,15 +11,18 @@ void parse_client (char* message, char* url, char* host)
 	int i,j;
 	memset(host,'\0',256);
 	memset(url,'\0',MESLEN-256);
-	for (i=0;message[i]!='/';i++)
+	for (i=0;message[i]!='/'||message[i]=='\0';i++)
 	{
 		host[i]=message[i];
 	}
-	for(j=0;message[i]!='\0';i++,j++)
+	for(j=0;message[i]!='\n';i++,j++)
 	{
 		url[j]=message[i];
 	}
-
+	if (strlen(url)==0)
+	{
+		url[0]='/';
+	}
 }
 int main (void)
 {
