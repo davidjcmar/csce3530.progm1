@@ -183,6 +183,7 @@ int main (void)
 		return 1;
 	}
 	printf ("%s",buffer);
+	printf ("end buffer\n");
 	/*
 	memset (buffer,'\0',MESLEN);
 	size=send (sock_inet, message, strlen(message), 0);
