@@ -60,7 +60,6 @@ int main (void)
 	int sock_descript, sock_cli_ser, sock_inet, size;
 	struct sockaddr_in server, client, proxy;
 	char message[MESLEN], url[MESLEN-256], host[256], buffer[MESLEN];
-	FILE* pipe_fp;
 
 	/* create socket to client */
 	sock_descript=socket(AF_INET,SOCK_STREAM,0);
@@ -103,55 +102,36 @@ int main (void)
 	write (sock_cli_ser, message, strlen(message));
 	memset(message,'\0',MESLEN);
 	read (sock_cli_ser, message, MESLEN);
-
-	memset(buffer,'\0',MESLEN);
-	strcpy (buffer,"curl -IL ");
-	strcat (buffer, message);
-	if ((pipe_fp=popen(buffer, "r"))==NULL)
-	{
-		printf ("Borked.\n");
-		return 1;
-	}
-	memset(buffer,'\0',MESLEN);
-	while (fgets(message,MESLEN,pipe_fp))
-		strcat (buffer,message);
-	pclose (pipe_fp);
-	printf ("weiners\n");
-//	printf ("%s", message);
-//	write (sock_cli_ser, buffer, strlen(message));
-
-	pclose(pipe_fp);
-//	system (buffer);
-//	printf ("message:%s\n", buffer); // testing
-/*	parse_client (message, url, host);*/
+//	printf ("message:%s\n", message); // testing
+	parse_client (message, url, host);
 //	printf ("url: %s\thost: %s\n",url,host);
 	
 
 	/* create socket to inet */
-/*	sock_inet=socket(AF_INET,SOCK_STREAM,0);
+	sock_inet=socket(AF_INET,SOCK_STREAM,0);
 	if (sock_inet==-1)
 	{
 		printf ("Failed to create socket.\n");
 		return 1;
-	}*/
+	}
 	/* set fields in sockaddr_in struct */
-/*	proxy.sin_family=AF_INET;
+	proxy.sin_family=AF_INET;
 	proxy.sin_addr.s_addr=INADDR_ANY;
 	//proxy.sin_port=htons(PORTNUM+1);
-	proxy.sin_port=htons(80);*/
+	proxy.sin_port=htons(80);
 	/* bind socket */
-/*	if (bind(sock_inet,(struct sockaddr*)&proxy, sizeof(proxy)) < 0)
+	if (bind(sock_inet,(struct sockaddr*)&proxy, sizeof(proxy)) < 0)
 	{
 		printf ("Bind failed.\n");
 		return 1;
 	}
-	printf ("Bind success.\n");*/
-/*	request(message,url,host);
-	printf ("%s", message);*/
+	printf ("Bind success.\n");
+	request(message,url,host);
+	printf ("%s", message);
 //	write (sock_inet, message, strlen(message));
 //	read (sock_inetg, message, MESLEN);
 //	getaddrinfo () // use struct addrinfo to id host
-/*	if (connect (sock_inet, (struct sockaddr*)&proxy, sizeof(proxy)) < 0)
+	if (connect (sock_inet, (struct sockaddr*)&proxy, sizeof(proxy)) < 0)
 	{
 		printf ("Error connecting to web server.\n");
 		return 1;
@@ -162,7 +142,7 @@ int main (void)
 	size=recv (sock_inet, buffer, MESLEN, 0);
 	printf ("size: %d\n",size);
 	printf ("%s", buffer);
-	shutdown (sock_inet,2);*/
+	shutdown (sock_inet,2);
 	shutdown (sock_descript,2);
 	shutdown (sock_cli_ser,2);
 	return 0;
