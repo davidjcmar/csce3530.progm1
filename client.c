@@ -38,7 +38,7 @@ int main (void)
 		printf ("Inbound message failed.\n");
 		return 1;
 	}
-	fgets(message, sizeof(message), stdin);
+	fgets(*message, sizeof(message), stdin);
 	if (send(sock_descrip, message, sizeof(message), 0) < 0)
 	{
 		printf ("Outbound message failed.\n");
