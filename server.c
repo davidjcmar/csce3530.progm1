@@ -173,6 +173,16 @@ int main (void)
 		shutdown (sock_inet,2);
 		return 1;
 	}
+	memset (buffer,'\0',MESLEN);
+	if (recv(sock_inet,buffer,MESLEN,0) < 0)
+	{
+		printf ("No reply from webserver.\n");
+		shutdown (sock_descript,2);
+		shutdown (sock_cli_ser,2);
+		shutdown (sock_inet,2);
+		return 1;
+	}
+	printf ("%s",buffer);
 	/*
 	memset (buffer,'\0',MESLEN);
 	size=send (sock_inet, message, strlen(message), 0);
