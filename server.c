@@ -8,9 +8,11 @@
 /* parse url from client for GET request */
 void parse_client (char* message, char* url, char* host)
 {
+	printf ("message length: %d\n",strlen(message));
 	int i,j;
-	memset(host,'\0',256);
+/*	memset(host,'\0',256);
 	memset(url,'\0',MESLEN-256);
+	if (message[strlen(message)])
 	for (i=0;message[i]!='\0'||message[i]=='/';i++)
 	{
 		host[i]=message[i];
@@ -22,7 +24,7 @@ void parse_client (char* message, char* url, char* host)
 	if (strlen(url)==0)
 	{
 		url[0]='/';
-	}
+	}*/
 }
 int main (void)
 {
