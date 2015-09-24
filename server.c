@@ -84,6 +84,7 @@ int main (void)
 	if (bind(sock_descript,(struct sockaddr *)&server, sizeof(server)) < 0)
 	{
 		printf ("Bind failed.\n");
+		shutdown (sock_descript,2);
 		return 1;
 	}
 
@@ -98,6 +99,8 @@ int main (void)
 	if (sock_cli_ser < 0)
 	{
 		printf ("Connection not accepted.\n");
+		shutdown (sock_descript,2);
+		shutdown (sock_cli_ser,2);
 		return 1;
 	}
 	printf ("Connection accepted.\n");
@@ -116,6 +119,8 @@ int main (void)
 	if ((he = gethostbyname(host))==NULL)
 	{
 		printf ("Get host by name failed");
+		shutdown (sock_descript,2);
+		shutdown (sock_cli_ser,2);
 		return 1;
 	}
 	addr_list = (struct in_addr **) he->h_addr_list;
@@ -131,6 +136,8 @@ int main (void)
 	if (sock_inet==-1)
 	{
 		printf ("Failed to create socket.\n");
+		shutdown (sock_descript,2);
+		shutdown (sock_cli_ser,2);
 		return 1;
 	}
 	/* set fields in sockaddr_in struct */
@@ -141,6 +148,9 @@ int main (void)
 	if (bind(sock_inet,(struct sockaddr*)&proxy, sizeof(proxy)) < 0)
 	{
 		printf ("Bind failed.\n");
+		shutdown (sock_descript,2);
+		shutdown (sock_cli_ser,2);
+		shutdown (sock_inet,2);
 		return 1;
 	}
 	printf ("Bind success.\n");
@@ -158,6 +168,9 @@ int main (void)
 	if (send(sock_inet,message,strlen(message),0) < 0)
 	{
 		printf ("Request failed.\n");
+		shutdown (sock_descript,2);
+		shutdown (sock_cli_ser,2);
+		shutdown (sock_inet,2);
 		return 1;
 	}
 	/*
