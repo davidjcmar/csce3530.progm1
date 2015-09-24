@@ -59,7 +59,7 @@ int main (void)
 {
 	int sock_descript, sock_cli_ser, sock_inet, size;
 	struct sockaddr_in server, client, proxy;
-	char message[MESLEN], url[MESLEN-256], host[256];
+	char message[MESLEN], url[MESLEN-256], host[256], buffer[MESLEN];
 
 	/* create socket to client */
 	sock_descript=socket(AF_INET,SOCK_STREAM,0);
@@ -135,11 +135,12 @@ int main (void)
 		printf ("Error connecting to web server.\n");
 		return 1;
 	}
+	memset (buffer,'\0',MESLEN);
 	size=send (sock_inet, message, strlen(message), 0);
 	printf ("size: %d\n",size);
-	size=recv (sock_inet, message, MESLEN, 0);
+	size=recv (sock_inet, buffer, MESLEN, 0);
 	printf ("size: %d\n",size);
-	printf ("%s", message);
+	printf ("%s", buffer);
 	shutdown (sock_inet,2);
 	shutdown (sock_descript,2);
 	shutdown (sock_cli_ser,2);
