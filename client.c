@@ -4,6 +4,7 @@
 #include <arpa/inet.h>
 #include <sys/types.h>
 #include <netinet/in.h>
+#include <unistd.h>
 #define MESLEN 2048
 #define PORTNUM 56565
 
@@ -48,7 +49,7 @@ int main (void)
 		printf ("Failed to receive message from server.\n");
 		return 1;
 	}
-	printf ("%s" message);
+	printf ("%s", message);
 	shutdown (sock_descrip,2);
 	return 0;
 }
