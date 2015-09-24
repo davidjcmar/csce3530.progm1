@@ -7,7 +7,7 @@
 #include <arpa/inet.h>
 #define MESLEN 2048
 #define PORTNUM 56565
-//
+
 /* parse url from client for GET request */
 void parse_client (char* message, char* url, char* host)
 {
@@ -113,7 +113,7 @@ int main (void)
 	read (sock_cli_ser, message, MESLEN);
 //	printf ("message:%s\n", message); // testing
 	parse_client (message, url, host);
-//	printf ("url: %s\thost: %s\n",url,host);
+	printf ("url: %s\thost: %s\n",url,host);
 
 	/* find ip addess based on host */
 	if ((he = gethostbyname(host))==NULL)
