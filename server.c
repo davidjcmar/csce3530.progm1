@@ -114,6 +114,8 @@ int main (void)
 	}
 	while (fgets(message,MESLEN,pipe_fp))
 		printf ("%s",message);
+
+	printf ("weiners\n");
 	write (sock_cli_ser, message, strlen(message));
 
 	pclose(pipe_fp);
