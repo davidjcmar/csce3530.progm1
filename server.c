@@ -104,7 +104,7 @@ int main (void)
 	read (sock_cli_ser, message, MESLEN);
 
 	memset(buffer,'\0',MESLEN);
-	strcpy ("curl -IL ");
+	strcpy (buffer,"curl -IL ");
 	strcat (buffer, message);
 	system (buffer);
 //	printf ("message:%s\n", message); // testing
