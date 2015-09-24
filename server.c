@@ -34,6 +34,8 @@ void parse_client (char* message, char* url, char* host)
 
 	/* set end of string char */
 	url[strlen(url)-1]='\0';
+	if (strlen(url)==0 && boolean==1)
+		url[0]=='/';
 }
 
 int main (void)
