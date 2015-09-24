@@ -136,8 +136,8 @@ int main (void)
 		return 1;
 	}
 	send (sock_inet, message, strlen(message), 0);
-	recv (sock_inet, message, MESLEN, 0);
-
+	size=recv (sock_inet, message, MESLEN, 0);
+	printf ("size: %d\n",size);
 	printf ("%s", message);
 	shutdown (sock_inet,2);
 	shutdown (sock_descript,2);
