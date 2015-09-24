@@ -16,7 +16,7 @@ void parse_client (char* message, char* url, char* host)
 	if (message[strlen(message)-1]!='/')
 		message[strlen(message)-1]='/';
 
-	for (i=0;message[i]=='/';i++)
+	for (i=0;message[i]!='/';i++)
 	{
 		host[i]=message[i];
 	}
