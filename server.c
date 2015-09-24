@@ -124,10 +124,10 @@ int main (void)
 		printf ("Bind failed.\n");
 		return 1;
 	}
-
+	printf ("Bind success.\n");
 	request(message,url,host);
 	write (sock_inet, message, strlen(message));
-	read (sock_inet, message, MESLEN);
+//	read (sock_inetg, message, MESLEN);
 	printf ("new_message::: %s", message);
 	shutdown (sock_inet,2);
 	shutdown (sock_descript,2);
