@@ -1,60 +1,54 @@
-#include <sys/socket.h>
-#include <sys/types.h>
-#include <netinet/in.h>
 #include <stdio.h>
 #include <string.h>
+#include <sys/socket.h>
+#include <unistd.h>
+#include <netinet/in.h>
 
 int main (void)
 {
-	int sock_descrip, sock_cse02, sock_inet, c;
-	struct sockaddr_in cse01_server,cse01_client, cse02_client;
-	char message[2048], cse02_resp[2048];
+	int sock_descript, sock_cli_ser, size;
+	struct sockaddr_in server, client;
+	char* message;
 
-	sock_descrip=socket(AF_INET,SOCK_STREAM,0);
-	if (sock_descrip==-1)
+	/* create socket */
+	sock_descript=socket(AF_INET,SOCK_STREAM,0);
+	if (sock_descript==-1)
 	{
 		printf ("Failed to create socket.\n");
 		return 1;
 	}
 
-	cse01_server.sin_family=AF_INET;
-	cse01_server.sin_addr.s_addr=INADDR_ANY;
-	cse01_server.sin_port=htons(56565);
+	/* set fields in sockaddr_in struct */
+	server.sin_family=AF_INET;
+	server.sin_addr.s_addr=INADDR_ANY;
+	server.sin_port=htons(56565);
 
-	if (bind(sock_descrip,(struct sockaddr *)&cse01_server, sizeof(cse01_server)) < 0)
+	/* bind socket */
+	if (bind(sock_descript,(struct sockaddr *)&server, sizeof(server)) < 0)
 	{
-		printf ("Bind failed\n");
+		printf ("Bind failed.\n");
 		return 1;
 	}
 
-	printf ("Bind complete\n");
+	printf ("Bind successful.\n");
 
-	listen (sock_descrip, 5);
+	/* listen */
+	listen (sock_descript,3);
 
-	printf ("Waiting for connections: \n");
-	c=sizeof(struct sockaddr_in);
+	printf ("Ready for incoming connection.\n");
+	size=sizeof (struct sockaddr_in);
+	sock_cli_ser=accept(sock_descript, (struct sockaddr *)&client, (socklen_t *)&c);
 
-	if ((sock_cse02=accept(sock_descrip,(struct sockaddr *)&cse02_client, (socklen_t *)&c)) < 0)
+	if (sock_cli_ser<0)
 	{
-		printf ("Connection not accepted.\n");
+		printf ("Connection failed.\n");
 		return 1;
 	}
-
 	printf ("Connection accepted.\n");
-	message="Enter a URL for an HTTP request.\n\0";
 
-	if (send(sock_cse02, message, strlen(message)) == -1)
-	{
-		printf ("Outbound message failed.\n");
-		return 1;
-	}
-	printf ("MESSAGE\n");
-	if (recv(sock_descrip, cse02_resp, 2048, 0) < 0)
-	{
-		printf ("Client response failed.\n");
-		return 1;
-	}
-	printf ("%s\n", cse02_resp);
-	
-return 0;
+	/* hello client */
+	message="Hello client.\n";
+	write (sock_cli_ser, message, strlen(message));
+
+	return 0;
 }
