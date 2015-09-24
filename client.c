@@ -43,7 +43,11 @@ int main (void)
 	memset(message,'\0',MESLEN);
 	fgets (message, MESLEN, stdin);
 	write (sock_descrip, message, strlen(message));
-	read (sock_descrip, message, MESLEN);
+	if (read(sock_descrip, message,MESLEN) == -1)
+	{
+		printf ("Failed to receive message from server.\n");
+	}
+
 	shutdown (sock_descrip,2);
 	return 0;
 }
