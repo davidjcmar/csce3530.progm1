@@ -9,7 +9,7 @@ int main (void)
 {
 	int sock_descrip;
 	struct sockaddr_in server;
-	char* message;
+	char message[2048];
 
 	/* create socket */
 	sock_descrip=socket(AF_INET,SOCK_STREAM,0);
@@ -30,7 +30,7 @@ int main (void)
 	}
 
 	printf ("Connected.\n");
-
+	memset(message,0,2048);
 	/* receive hello */
 	if (read(sock_descrip, message, 2000) == -1)
 	{

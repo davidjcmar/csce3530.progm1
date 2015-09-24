@@ -8,7 +8,7 @@ int main (void)
 {
 	int sock_descript, sock_cli_ser, size;
 	struct sockaddr_in server, client;
-	char* message;
+	char message[2048];
 
 	/* create socket */
 	sock_descript=socket(AF_INET,SOCK_STREAM,0);
@@ -42,6 +42,7 @@ int main (void)
 		printf ("Connection accepted.\n");
 
 		/* hello client */
+		memset(message,0,2048);
 		message="Hello client.\n";
 		write (sock_cli_ser, message, strlen(message));
 	}
