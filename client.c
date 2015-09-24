@@ -19,9 +19,9 @@ int main (void)
 		return 1;
 	}
 
-	cse01_server.sin_addr.s_addr = inet_addr("129.120.151.94");
-	cse01_server.sin_family = AF_INET;
-	cse01_server.sin_port = htons(56565);
+	server.sin_addr.s_addr = inet_addr("129.120.151.94");
+	server.sin_family = AF_INET;
+	server.sin_port = htons(56565);
 
 	if (connect(sock_descrip, (struct sockaddr*)&server, sizeof (server)) < 0)
 	{
