@@ -32,8 +32,7 @@ int main (void)
 	}
 
 	printf ("Connected.\n");
-	memset(message,0,2048);
-	message[0]='\0';
+	memset(message,'\0',MESLEN);
 	/* receive hello */
 	if (read(sock_descrip, message, MESLEN) == -1)
 	{
@@ -41,8 +40,9 @@ int main (void)
 		return 1;
 	}
 	printf ("%s\n", message);
+	memset(message,'\0',MESLEN);
 	fgets (message, MESLEN, stdin);
 	write (sock_descrip, message, strlen(message));
-	
+
 	return 0;
 }
