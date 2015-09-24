@@ -8,7 +8,7 @@ int main (void)
 {
 	int sock_descrip, sock_cse02, sock_inet, c;
 	struct sockaddr_in cse01_server,cse01_client, cse02_client;
-	char* message, cse02_resp[2048];
+	char message[2048], cse02_resp[2048];
 
 	sock_descrip=socket(AF_INET,SOCK_STREAM,0);
 	if (sock_descrip==-1)
@@ -41,7 +41,7 @@ int main (void)
 	}
 
 	printf ("Connection accepted.\n");
-	message="Enter a URL for an HTTP request.\n";
+	message="Enter a URL for an HTTP request.\n\0";
 
 	if (send(sock_descrip, message, strlen(message), 0) < 0)
 	{
