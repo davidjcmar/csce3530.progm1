@@ -118,7 +118,7 @@ int main (void)
 	pclose (pipe_fp);
 	printf ("weiners\n");
 //	printf ("%s", message);
-	write (sock_cli_ser, buffer, strlen(message));
+//	write (sock_cli_ser, buffer, strlen(message));
 
 	pclose(pipe_fp);
 //	system (buffer);
