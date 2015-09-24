@@ -37,7 +37,7 @@ int main (void)
 
 	printf ("Ready for incoming connection.\n");
 	size=sizeof (struct sockaddr_in);
-	sock_descript=accept(sock_descript, (struct sockaddr *)&client, (socklen_t *)&size);
+	sock_cli_ser=accept(sock_descript, (struct sockaddr *)&client, (socklen_t *)&size);
 	if (sock_cli_ser < 0)
 	{
 		printf ("Connection not accepted.\n");
@@ -50,7 +50,6 @@ int main (void)
 		message[0]='\0';
 		strcpy (message,"Enter a URL for which you want a HTTP request: ");
 		write (sock_cli_ser, message, strlen(message));
-		read ()
 
 	return 0;
 }
