@@ -48,7 +48,7 @@ int main (void)
 		printf ("Failed to receive message from server.\n");
 		return 1;
 	}
-	printf ("wieners\n");
+	printf ("%s" message);
 	shutdown (sock_descrip,2);
 	return 0;
 }
