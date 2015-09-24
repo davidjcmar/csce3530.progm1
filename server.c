@@ -145,15 +145,15 @@ int main (void)
 	proxy.sin_addr.s_addr= inet_addr(ip_addr);
 	proxy.sin_port=htons(80);
 	/* bind socket */
-	if (bind(sock_inet,(struct sockaddr*)&proxy, sizeof(proxy)) < 0)
+	if (connect(sock_inet,(struct sockaddr*)&proxy, sizeof(proxy)) < 0)
 	{
-		printf ("Bind failed.\n");
+		printf ("Connection failed.\n");
 		shutdown (sock_descript,2);
 		shutdown (sock_cli_ser,2);
 		shutdown (sock_inet,2);
 		return 1;
 	}
-	printf ("Bind success.\n");
+	printf ("Connected.\n");
 	request(message,url,host);
 	printf ("%s", message);
 //	write (sock_inet, message, strlen(message));
