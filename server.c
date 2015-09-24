@@ -11,7 +11,7 @@ void parse_client (char* message, char* url, char* host)
 	int i,j;
 	memset(host,'\0',256);
 	memset(url,'\0',MESLEN-256);
-	for (i=0;message[i]!='/'||message[i]=='\0';i++)
+	for (i=0;message[i]!='\0'||message[i]=='/';i++)
 	{
 		host[i]=message[i];
 	}
