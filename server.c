@@ -42,13 +42,13 @@ int main (void)
 
 	printf ("Connection accepted.\n");
 	message="Enter a URL for an HTTP request.\n";
-	printf ("MESSAGE\n");
+
 	if (send(sock_descrip, message, strlen(message), 0) < 0)
 	{
 		printf ("Outbound message failed.\n");
 		return 1;
 	}
-
+	printf ("MESSAGE\n");
 	if (recv(sock_descrip, cse02_resp, 2048, 0) < 0)
 	{
 		printf ("Client response failed.\n");
