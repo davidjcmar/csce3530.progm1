@@ -122,7 +122,7 @@ int main (void)
 
 	pclose(pipe_fp);
 //	system (buffer);
-//	printf ("message:%s\n", message); // testing
+	printf ("message:%s\n", buffer); // testing
 /*	parse_client (message, url, host);*/
 //	printf ("url: %s\thost: %s\n",url,host);
 	

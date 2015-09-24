@@ -46,6 +46,7 @@ int main (void)
 	if (read(sock_descrip, message,MESLEN) == -1)
 	{
 		printf ("Failed to receive message from server.\n");
+		return 1;
 	}
 	printf ("wieners\n");
 	shutdown (sock_descrip,2);
