@@ -43,7 +43,7 @@ int main (void)
 	memset(message,'\0',MESLEN);
 	fgets (message, MESLEN, stdin);
 	write (sock_descrip, message, strlen(message));
-
+	read (sock_descrip, message, MESLEN);
 	shutdown (sock_descrip,2);
 	return 0;
 }
