@@ -117,7 +117,8 @@ int main (void)
 	/* set fields in sockaddr_in struct */
 	proxy.sin_family=AF_INET;
 	proxy.sin_addr.s_addr=INADDR_ANY;
-	proxy.sin_port=htons(PORTNUM+1);
+	//proxy.sin_port=htons(PORTNUM+1);
+	proxy.sin_port=htons(80);
 	/* bind socket */
 	if (bind(sock_inet,(struct sockaddr*)&proxy, sizeof(proxy)) < 0)
 	{
