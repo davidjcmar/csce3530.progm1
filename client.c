@@ -4,12 +4,14 @@
 #include <arpa/inet.h>
 #include <sys/types.h>
 #include <netinet/in.h>
+#define MESLEN 2048
+#define PORTNUM 56565
 
 int main (void)
 {
 	int sock_descrip;
 	struct sockaddr_in server;
-	char message[2048];
+	char message[MESLEN];
 
 	/* create socket */
 	sock_descrip=socket(AF_INET,SOCK_STREAM,0);
@@ -21,7 +23,7 @@ int main (void)
 
 	server.sin_addr.s_addr = inet_addr("129.120.151.94");
 	server.sin_family = AF_INET;
-	server.sin_port = htons(56565);
+	server.sin_port = htons(PORTNUM);
 
 	if (connect(sock_descrip, (struct sockaddr*)&server, sizeof (server)) < 0)
 	{
@@ -33,11 +35,14 @@ int main (void)
 	memset(message,0,2048);
 	message[0]='\0';
 	/* receive hello */
-	if (read(sock_descrip, message, 2000) == -1)
+	if (read(sock_descrip, message, MESLEN) == -1)
 	{
 		printf ("Failed to receive message from server.\n");
 		return 1;
 	}
 	printf ("%s\n", message);
+	fgets (message, MESLEN, stdin);
+	write (sock_descrip, message, strlen(message));
+	
 	return 0;
 }
