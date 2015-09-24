@@ -126,7 +126,8 @@ int main (void)
 	}
 	printf ("Bind success.\n");
 	request(message,url,host);
-	write (sock_inet, message, strlen(message));
+	printf ("%s", message);
+//	write (sock_inet, message, strlen(message));
 //	read (sock_inetg, message, MESLEN);
 	printf ("new_message::: %s", message);
 	shutdown (sock_inet,2);
