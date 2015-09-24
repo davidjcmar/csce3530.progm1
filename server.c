@@ -124,7 +124,7 @@ int main (void)
 		printf ("Bind failed.\n");
 		return 1;
 	}
-
+	printf ("wiener\n");
 	request(message,url,host);
 	printf ("new message:\n%sloloolol",message);
 	//write (proxy, message, strlen(message));
