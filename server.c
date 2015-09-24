@@ -184,7 +184,7 @@ int main (void)
 	}
 	printf ("%s",buffer);
 	printf ("strlen: %d\n",strlen(buffer));
-	boolean=0;
+/*	boolean=0;
 	i=0;
 	while (boolean!=1)
 	{
@@ -197,7 +197,7 @@ int main (void)
 		}
 		i++;
 	}
-	buffer[i]='\0';
+	buffer[i]='\0';*/
 	/*
 	memset (buffer,'\0',MESLEN);
 	size=send (sock_inet, message, strlen(message), 0);
