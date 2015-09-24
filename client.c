@@ -10,7 +10,7 @@ int main (void)
 	int sock_descrip;
 	struct sockaddr_in cse01_server;
 	int test;
-	char* message[2048], cse01_resp[2048];
+	char message[2048], cse01_resp[2048];
 
 	sock_descrip=socket(AF_INET,SOCK_STREAM,0);
 
@@ -38,7 +38,8 @@ int main (void)
 		printf ("Inbound message failed.\n");
 		return 1;
 	}
-	fgets(*message, sizeof(message), stdin);
+	printf ("%s\n",cse01_resp);
+	fgets(message, sizeof(message), stdin);
 	if (send(sock_descrip, message, sizeof(message), 0) < 0)
 	{
 		printf ("Outbound message failed.\n");
