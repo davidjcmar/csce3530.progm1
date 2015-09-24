@@ -111,13 +111,14 @@ int main (void)
 //	printf ("message:%s\n", message); // testing
 	parse_client (message, url, host);
 //	printf ("url: %s\thost: %s\n",url,host);
-	
+	printf ("1");
 	/* find ip addess based on host */
 	if ((he = gethostbyname(host))==NULL)
 	{
 		printf ("Get host by name failed");
 		return 1;
 	}
+	printf ("2");
 	for (i=0; addr_list[i]!=NULL;i++)
 	{
 		strcpy (ip_addr,inet_ntoa(*addr_list[i]));
