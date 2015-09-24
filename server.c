@@ -60,6 +60,7 @@ int main (void)
 	int sock_descript, sock_cli_ser, sock_inet, size;
 	struct sockaddr_in server, client, proxy;
 	char message[MESLEN], url[MESLEN-256], host[256], buffer[MESLEN];
+	FILE* pipe_fp;
 
 	/* create socket to client */
 	sock_descript=socket(AF_INET,SOCK_STREAM,0);
@@ -106,7 +107,15 @@ int main (void)
 	memset(buffer,'\0',MESLEN);
 	strcpy (buffer,"curl -IL ");
 	strcat (buffer, message);
-	system (buffer);
+	if ((pipe_fp=popen(buffer, "r"))==NULL)
+	{
+		printf ("Borked.\n");
+		return 1;
+	}
+	while (fgets(message,MESLEN,pipe_fp))
+		printf ("%s",message);
+	pclose(pipe_fp);
+//	system (buffer);
 //	printf ("message:%s\n", message); // testing
 /*	parse_client (message, url, host);*/
 //	printf ("url: %s\thost: %s\n",url,host);
