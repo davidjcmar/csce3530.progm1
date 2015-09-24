@@ -9,7 +9,7 @@
 /* parse url from client for GET request */
 void parse_client (char* message, char* url, char* host)
 {
-	printf ("message length: %d\n",strlen(message));
+//	printf ("message length: %d\n",strlen(message));
 	int i,j;
 	int boolean=0;
 
@@ -20,7 +20,6 @@ void parse_client (char* message, char* url, char* host)
 	if (message[strlen(message)-2]!='/')
 	{
 		/* set last char to '/' temporarily */
-		printf ("boo\n");
 		message[strlen(message)-1]='/';
 		boolean=1; // set flag
 	}
@@ -35,7 +34,7 @@ void parse_client (char* message, char* url, char* host)
 		url[j]=message[i];
 
 	/* set end of string char */
-	printf ("url strlen: %d\n",strlen(url));
+//	printf ("url strlen: %d\n",strlen(url));
 	if (strlen(url)==0)
 		url[0]='/';
 	else
@@ -103,10 +102,12 @@ int main (void)
 	write (sock_cli_ser, message, strlen(message));
 	memset(message,'\0',MESLEN);
 	read (sock_cli_ser, message, MESLEN);
-	printf ("message:%s\n", message); // testing
+//	printf ("message:%s\n", message); // testing
 	parse_client (message, url, host);
 //	printf ("url: %s\thost: %s\n",url,host);
 	
+
+	printf ("HELLO?\n");
 	/* create socket to inet */
 	sock_inet=socket(AF_INET,SOCK_STREAM,0);
 	if (sock_inet==-1)
