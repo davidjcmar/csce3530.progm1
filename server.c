@@ -68,7 +68,7 @@ int main (void)
 	write (sock_cli_ser, message, strlen(message));
 	memset(message,'\0',MESLEN);
 	read (sock_cli_ser, message, MESLEN);
-//	printf ("%s\n", message); // testing
+	printf ("message:%s\n", message); // testing
 	parse_client (message, url, host);
 	printf ("url: %s\thost: %s\n",url,host);
 	/* create socket to inet */
