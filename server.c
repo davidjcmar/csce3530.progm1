@@ -135,9 +135,8 @@ int main (void)
 	}
 	/* set fields in sockaddr_in struct */
 	proxy.sin_family=AF_INET;
-	proxy.sin_addr.s_addr=INADDR_ANY;
-	//proxy.sin_port=htons(PORTNUM+1);
-	//proxy.sin_port=htons(80);
+	proxy.sin_addr.s_addr= inet_addr(ip_addr);
+	proxy.sin_port=htons(80);
 	/* bind socket */
 	if (bind(sock_inet,(struct sockaddr*)&proxy, sizeof(proxy)) < 0)
 	{
@@ -150,17 +149,25 @@ int main (void)
 //	write (sock_inet, message, strlen(message));
 //	read (sock_inetg, message, MESLEN);
 //	getaddrinfo () // use struct addrinfo to id host
-	if (connect (sock_inet, (struct sockaddr*)&proxy, sizeof(proxy)) < 0)
+/*	if (connect (sock_inet, (struct sockaddr*)&proxy, sizeof(proxy)) < 0)
 	{
 		printf ("Error connecting to web server.\n");
 		return 1;
+	}*/
+	/* send request to webserver on port 80 */
+	if (send(sock_inet,message,strlen(message),0) < 0)
+	{
+		printf ("Request failed.\n");
+		return 1;
 	}
+	/*
 	memset (buffer,'\0',MESLEN);
 	size=send (sock_inet, message, strlen(message), 0);
 	printf ("size: %d\n",size);
 	size=recv (sock_inet, buffer, MESLEN, 0);
 	printf ("size: %d\n",size);
-	printf ("%s", buffer);
+	printf ("%s", buffer);*/
+
 	shutdown (sock_inet,2);
 	shutdown (sock_descript,2);
 	shutdown (sock_cli_ser,2);
