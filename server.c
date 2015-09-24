@@ -16,24 +16,24 @@ void parse_client (char* message, char* url, char* host)
 	memset(host,'\0',256);
 	memset(url,'\0',MESLEN-256);
 
-	if (message[strlen(message)-1]!='/')
+	/* if message does not end in '/' */
+	if (message[strlen(message)-2]!='/')
 	{
+		/* set last char to '/' temporarily */
 		message[strlen(message)-1]='/';
-		boolean=1;
+		boolean=1; // set flag
 	}
-
+	/* pull host until '/' */
 	for (i=0;message[i]!='/';i++)
 		host[i]=message[i];
 
 	message[strlen(message)-1]='\n';
-
+	/* pull url until newline */
 	for(j=0;message[i]!='\n';i++,j++)
 		url[j]=message[i];
 
-	if (boolean==1)
-		url[strlen(url)-1]='/';
-	else
-		url[strlen(url)-1]='\0';
+	/* set end of string char */
+	url[strlen(url)-1]='\0';
 }
 
 int main (void)
