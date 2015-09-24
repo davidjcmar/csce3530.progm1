@@ -43,7 +43,7 @@ int main (void)
 
 		/* hello client */
 		memset(message,0,2048);
-		message[0]="\0";
+		message[0]='\0';
 		strcpy (message,"Hello client.\n");
 //		message="Hello client.\n";
 		write (sock_cli_ser, message, strlen(message));
