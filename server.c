@@ -60,7 +60,7 @@ void request (char* message, char* url, char* host)
 int main (void)
 {
 	int sock_descript, sock_cli_ser, sock_inet, size;
-	int i;
+	int i,boolean;
 	struct sockaddr_in server, client, proxy;
 	char message[MESLEN], url[MESLEN-256], host[256], buffer[MESLEN];
 	struct hostent* he;
@@ -184,6 +184,20 @@ int main (void)
 	}
 	printf ("%s",buffer);
 	printf ("strlen: %d\n",strlen(buffer));
+	boolean=0;
+	i=0;
+	while (boolean!=1)
+	{
+		if (buffer[i]=='\n')
+		{
+			if (buffer[i+1]=='\n')
+			{
+				break;
+			}			
+		}
+		i++;
+	}
+	buffer[i+1]='\0';
 	/*
 	memset (buffer,'\0',MESLEN);
 	size=send (sock_inet, message, strlen(message), 0);
