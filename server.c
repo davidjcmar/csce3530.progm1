@@ -38,7 +38,7 @@ void parse_client (char* message, char* url, char* host)
 	if (strlen(url)==0)
 		url[0]='/';
 	else
-		url[strlen(url)-1]='\0';
+		url[strlen(url)]='\0';
 
 }
 
