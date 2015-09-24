@@ -112,9 +112,9 @@ int main (void)
 		printf ("Borked.\n");
 		return 1;
 	}
-	while (fgets(message,MESLEN,pipe_fp))
+	fgets(message,MESLEN,pipe_fp);
 		//printf ("%s",message);
-		write (sock_cli_ser, message, strlen(message));
+	write (sock_cli_ser, message, strlen(message));
 
 	pclose(pipe_fp);
 //	system (buffer);
