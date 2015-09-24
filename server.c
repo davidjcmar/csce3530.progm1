@@ -135,7 +135,8 @@ int main (void)
 		printf ("Error connecting to web server.\n");
 		return 1;
 	}
-	send (sock_inet, message, strlen(message), 0);
+	size=send (sock_inet, message, strlen(message), 0);
+	printf ("size: %d\n",size);
 	size=recv (sock_inet, message, MESLEN, 0);
 	printf ("size: %d\n",size);
 	printf ("%s", message);
