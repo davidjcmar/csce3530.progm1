@@ -3,6 +3,8 @@
 #include <sys/socket.h>
 #include <unistd.h>
 #include <netinet/in.h>
+#include <netdb.h>
+#include <arpa/inet.h>
 #define MESLEN 2048
 #define PORTNUM 56565
 
@@ -58,8 +60,12 @@ void request (char* message, char* url, char* host)
 int main (void)
 {
 	int sock_descript, sock_cli_ser, sock_inet, size;
+	int i;
 	struct sockaddr_in server, client, proxy;
 	char message[MESLEN], url[MESLEN-256], host[256], buffer[MESLEN];
+	struct hostent* he;
+	struct in_addr** addr_list;
+	char ip_addr[50];
 
 	/* create socket to client */
 	sock_descript=socket(AF_INET,SOCK_STREAM,0);
@@ -106,6 +112,17 @@ int main (void)
 	parse_client (message, url, host);
 //	printf ("url: %s\thost: %s\n",url,host);
 	
+	/* find ip addess based on host */
+	if ((he = gethostbyname(host))==NULL)
+	{
+		printf ("Get host by name failed");
+		return 1;
+	}
+	for (i=0; addr_list[i]!=NULL;i++)
+	{
+		strcpy (ip_addr,inet_ntoa(*addr_list[i]));
+	}
+	printf ("host: %s\t resolved to: %s\n", host, ip_addr); //testing
 
 	/* create socket to inet */
 	sock_inet=socket(AF_INET,SOCK_STREAM,0);
