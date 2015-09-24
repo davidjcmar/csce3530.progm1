@@ -135,10 +135,10 @@ int main (void)
 		printf ("Error connecting to web server.\n");
 		return 1;
 	}
-	if (write(sock_inet, message, strlen(message))==0)
-		return 0;
+	write(sock_inet, message, strlen(message));
+	read (sock_inet, message, MESLEN);
 
-	printf ("boom");
+	printf ("%s", message);
 	shutdown (sock_inet,2);
 	shutdown (sock_descript,2);
 	shutdown (sock_cli_ser,2);
