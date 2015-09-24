@@ -137,7 +137,7 @@ int main (void)
 		return 1;
 	}
 	memset (buffer,'\0',MESLEN);
-	size=write (sock_inet, message, strlen(message), 0);
+	size=send (sock_inet, message, strlen(message), 0);
 	printf ("size: %d\n",size);
 	size=recv (sock_inet, buffer, MESLEN, 0);
 	printf ("size: %d\n",size);
