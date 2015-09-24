@@ -36,7 +36,7 @@ void parse_client (char* message, char* url, char* host)
 	/* set end of string char */
 	printf ("url strlen: %d\n",strlen(url));
 	if (strlen(url)==0)
-		url[0]=='/';
+		url[0]='/';
 	else
 		url[strlen(url)-1]='\0';
 
