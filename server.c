@@ -192,12 +192,12 @@ int main (void)
 		{
 			if (buffer[i+1]=='\n')
 			{
-				break;
+				boolean=1;
 			}			
 		}
 		i++;
 	}
-	buffer[i+1]='\0';
+	buffer[i]='\0';
 	/*
 	memset (buffer,'\0',MESLEN);
 	size=send (sock_inet, message, strlen(message), 0);
