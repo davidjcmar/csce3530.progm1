@@ -127,8 +127,17 @@ int main (void)
 	printf ("Bind success.\n");
 	request(message,url,host);
 	printf ("%s", message);
-	write (sock_inet, message, strlen(message));
+//	write (sock_inet, message, strlen(message));
 //	read (sock_inetg, message, MESLEN);
+//	getaddrinfo () // use struct addrinfo to id host
+//	if (connect (sock_inet, (struct sockaddr*)&proxy, (socklen_t*) &sizeof(proxy)) < 0)
+	{
+		printf ("Error connecting to web server.\n");
+		return 1;
+	}
+	if (write(sock_inet, message, strlen(message))==0)
+		return 0;
+	
 	printf ("boom");
 	shutdown (sock_inet,2);
 	shutdown (sock_descript,2);
