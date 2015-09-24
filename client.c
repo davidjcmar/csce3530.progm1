@@ -31,6 +31,7 @@ int main (void)
 
 	printf ("Connected.\n");
 	memset(message,0,2048);
+	message[0]="\0";
 	/* receive hello */
 	if (read(sock_descrip, message, 2000) == -1)
 	{
